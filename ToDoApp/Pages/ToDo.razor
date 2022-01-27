@@ -1,0 +1,65 @@
+﻿@page "/ToDo"
+
+<h3>ToDo</h3>
+
+<form>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Enter task name" @bind="ToDoItem.Name">
+    </div>
+    <div class="form-group">
+        <label>Task description details</label>
+        <input type="text" class="form-control" placeholder="Enter description" @bind="ToDoItem.Description">
+    </div>
+    <div>
+        <label>Due Date:</label>
+        <input type="date" @bind="ToDoItem.DueDate">
+    </div>
+    <div class="form-group">
+        <label>Who is responsible for this task?</label>
+        <input type="text" class="form-control" placeholder="Enter name" @bind="ToDoItem.WhoseResponsibility">
+    </div>
+
+    <button type="button" class="btn btn-primary" @onclick="DisplayElement">Submit</button>
+
+</form>
+
+<br />
+
+
+<button type="button" class="btn btn-danger" @onclick="ToggleList"> Toggle List </button>
+
+
+
+
+@if (IsListVisible)
+{
+    <br />
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Whose Responsibility</th>
+                <th scope="col"> When it was added</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ToDoItem in ToDoItems)
+            {
+                <tr>
+                    <th scope="row">@ToDoItem.Name</th>
+                    <td>@ToDoItem.Description</td>
+                    <td>@ToDoItem.DueDate</td>
+                    <td>@ToDoItem.WhoseResponsibility</td>
+                    <td>@ToDoItem.WhenItWasAdded</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
