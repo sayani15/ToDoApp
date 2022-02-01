@@ -12,7 +12,7 @@ namespace ToDoApp.Pages
             new ToDoItem() {Name= "Andy's Task", Description = "Teach to code" }
         };
 
-        public bool IsListVisible { get; set; } = false;
+        private bool IsListVisible { get; set; } = false;
 
         private void DisplayElement()
         {
@@ -22,7 +22,7 @@ namespace ToDoApp.Pages
             ToDoItems.Add(toDoItem);
         }
 
-        public void ToggleList()
+        private void ToggleList()
         {
             //TODO Make this a lambdaw inline.
             IsListVisible = !IsListVisible;

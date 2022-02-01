@@ -2,6 +2,9 @@
 
 namespace ToDoApp.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ToDoItem
     {
         public string Name = "";
@@ -15,5 +18,7 @@ namespace ToDoApp.Data
         public DateTime WhenItWasAdded = new DateTime();
 
         public Guid Id;
+
+        public bool IsCompleted;
     }
 }
