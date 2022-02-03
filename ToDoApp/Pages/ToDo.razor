@@ -27,9 +27,7 @@
 <br />
 
 
-<button type="button" class="btn btn-outline-primary" @onclick="ToggleList"> Toggle List </button>
-
-
+<button type="button" class="btn btn-outline-primary" @onclick="() => IsListVisible = !IsListVisible"> Toggle List </button>
 
 
 @if (IsListVisible)

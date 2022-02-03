@@ -7,8 +7,8 @@ namespace ToDoApp.Pages
     {
         private ToDoItem ToDoItem = new ToDoItem();
 
-        private List<ToDoItem> ToDoItems = new List<ToDoItem>() { 
-            new ToDoItem() { Name = "Sayani's Task", Description ="Learn to code"}, 
+        private List<ToDoItem> ToDoItems = new List<ToDoItem>() {
+            new ToDoItem() { Name = "Sayani's Task", Description ="Learn to code"},
             new ToDoItem() {Name= "Andy's Task", Description = "Teach to code" }
         };
 
@@ -16,17 +16,12 @@ namespace ToDoApp.Pages
 
         private void DisplayElement()
         {
-        //TODO: add a clone method for the ToDoItem.
-            var toDoItem = new ToDoItem() {Name = ToDoItem.Name, Description = ToDoItem.Description, DueDate = ToDoItem.DueDate };
-
-            ToDoItems.Add(toDoItem);
+            var toDoItem = ToDoItem.Clone();
+            if (toDoItem.Name != "")
+            {
+                toDoItem.WhenItWasAdded = System.DateTime.Now;
+                ToDoItems.Add(toDoItem);
+            }
         }
-
-        private void ToggleList()
-        {
-            //TODO Make this a lambdaw inline.
-            IsListVisible = !IsListVisible;
-        }
-
     }
 }
