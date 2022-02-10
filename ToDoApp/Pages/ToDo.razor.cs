@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ToDoApp.Data;
 
 namespace ToDoApp.Pages
 {
     public partial class ToDo
     {
+        public DateTime DateValue { get; set; } = DateTime.Now;
         private ToDoItem ToDoItem = new ToDoItem();
 
         private List<ToDoItem> ToDoItems = new List<ToDoItem>() {
@@ -23,5 +25,6 @@ namespace ToDoApp.Pages
                 ToDoItems.Add(toDoItem);
             }
         }
+
     }
 }
