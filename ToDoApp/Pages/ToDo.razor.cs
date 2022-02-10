@@ -11,7 +11,7 @@ namespace ToDoApp.Pages
 
         private List<ToDoItem> ToDoItems = new List<ToDoItem>() {
             new ToDoItem() { Name = "Sayani's Task", Description ="Learn to code"},
-            new ToDoItem() {Name= "Andy's Task", Description = "Teach to code" }
+            new ToDoItem() {Name= "Andy's Task", Description = "Teach to code", IsCompleted = true}
         };
 
         private bool IsListVisible { get; set; } = false;
@@ -24,6 +24,10 @@ namespace ToDoApp.Pages
                 toDoItem.WhenItWasAdded = System.DateTime.Now;
                 ToDoItems.Add(toDoItem);
             }
+        }
+        private void ToggleIsComplete()
+        {
+
         }
 
     }

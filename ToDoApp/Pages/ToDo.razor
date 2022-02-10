@@ -20,8 +20,8 @@
         <input type="text" class="form-control" placeholder="Enter name" @bind="ToDoItem.WhoseResponsibility">
     </div>
 
-    <button type="button" class="btn btn-primary" @onclick="DisplayElement">Submit</button>
 
+    <button type="button" class="btn btn-primary" @onclick="DisplayElement">Submit</button>
 </form>
 
 <br />
@@ -41,7 +41,7 @@
                 <th scope="col">Due Date</th>
                 <th scope="col">Whose Responsibility</th>
                 <th scope="col"> When it was added</th>
-
+                <th scope="col">Is the task completed</th>
             </tr>
         </thead>
         <tbody>
@@ -53,11 +53,9 @@
                     <td>@ToDoItem.DueDate</td>
                     <td>@ToDoItem.WhoseResponsibility</td>
                     <td>@ToDoItem.WhenItWasAdded</td>
+                    <td><input type="checkbox" value="@ToDoItem.IsCompleted" @bind="ToDoItem.IsCompleted"/></td>
                 </tr>
             }
         </tbody>
     </table>
 }
-
-
-
