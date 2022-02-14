@@ -21,13 +21,10 @@ namespace ToDoApp.Pages
             var toDoItem = ToDoItem.Clone();
             if (toDoItem.Name != "")
             {
+                toDoItem.DueDate = DateValue;
                 toDoItem.WhenItWasAdded = System.DateTime.Now;
                 ToDoItems.Add(toDoItem);
             }
-        }
-        private void ToggleIsComplete()
-        {
-
         }
 
     }
