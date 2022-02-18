@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp", "ToDoApp\ToDoApp.csproj", "{4ADB3D2D-C6C9-4084-927A-00A2A1944EBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoAppTests", "ToDoAppTests\ToDoAppTests.csproj", "{3AABB5FB-0E4B-49F5-85B6-227A8B0A39C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppTests", "ToDoAppTests\ToDoAppTests.csproj", "{3AABB5FB-0E4B-49F5-85B6-227A8B0A39C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

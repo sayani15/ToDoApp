@@ -1,0 +1,12 @@
+﻿@page "/modal-test"
+
+<h3>ModalTest</h3>
+
+
+<ToDoApp.Pages.AndyModal @ref="Modal"></ToDoApp.Pages.AndyModal>
+
+<button @onclick="() => Modal.Open()">Open Modal</button>
+
+@code {
+    private ToDoApp.Pages.AndyModal Modal { get; set; }
+}
