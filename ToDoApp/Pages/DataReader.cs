@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using ToDoApp.Data;
 
-namespace ToDoApp.Data
+namespace ToDoApp.Pages
 {
-    public class DataAccessManager
+    public partial class DataReader
     {
+        public List<ToDoItem> ReadResults { get; set; }
+
+        public DataReader()
+        {
+            ReadResults = ReadFromCSV();
+        }
+
         public List<ToDoItem> ReadFromCSV()
         {
             var readResults = new List<ToDoItem>();
 
-            using (var reader = new StreamReader(@"C:\Users\Sayani Pathak\source\repos\ToDoApp\ToDoApp\Data\AllItems.csv")) //TODO show relative file paths
+            using (var reader = new StreamReader(@"../ToDoApp/Data/AllItems.csv"))
             {
                 List<string> names = new();
                 List<string> dueDates = new();
@@ -24,12 +30,12 @@ namespace ToDoApp.Data
                 var counter = 0;
                 while (!reader.EndOfStream)
                 {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
                     if (counter >= 1)
                     {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-
-                        var item = new ToDoItem()
+                        var item = new ToDoItem() //Add an Enum not maginc numbers.
                         {
                             Name = values[0],
                             DueDate = DateTime.Parse(values[1]),
@@ -56,9 +62,10 @@ namespace ToDoApp.Data
                 }
             }
 
-            return readResults;                     
+            //ReadResults = readResults;
+
+            return readResults;
 
         }
-       
     }
 }
