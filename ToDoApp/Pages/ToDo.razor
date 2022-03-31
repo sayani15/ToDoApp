@@ -26,10 +26,33 @@
 
 <br />
 
-<h1>Andy's change</h1>
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <p>Name: @ToDoItems[0].Name</p>
+
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <button type="button" class="btn btn-outline-primary" @onclick="() => IsListVisible = !IsListVisible"> Toggle List </button>
 
+<ToDoApp.Pages.AndyModal @ref="Modal"></ToDoApp.Pages.AndyModal>
 
 @if (IsListVisible)
 {
@@ -49,12 +72,12 @@
             @foreach (var ToDoItem in ToDoItems)
             {
                 <tr>
-                    <th scope="row">@ToDoItem.Name</th>
+                    <th @onclick="() => Modal.Open()" scope="row">@ToDoItem.Name</th>
                     <td>@ToDoItem.Description</td>
                     <td>@ToDoItem.DueDate</td>
                     <td>@ToDoItem.WhoseResponsibility</td>
                     <td>@ToDoItem.WhenItWasAdded</td>
-                    <td><input type="checkbox" value="@ToDoItem.IsCompleted" @bind="ToDoItem.IsCompleted"/></td>
+                    <td><input type="checkbox" value="@ToDoItem.IsCompleted" @bind="ToDoItem.IsCompleted" /></td>
                 </tr>
             }
         </tbody>
