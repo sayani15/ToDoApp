@@ -35,28 +35,9 @@ namespace ToDoApp.Pages
             }
         }
 
-        private ToDoApp.Pages.AndyModal Modal { get; set; }
-
         public Guid Guid = Guid.NewGuid();
         public string ModalDisplay = "none;";
         public string ModalClass = "";
         public bool ShowBackdrop = false;
-
-        public void Open()
-        {
-            ModalDisplay = "block;";
-            ModalClass = "Show";
-            ShowBackdrop = true;
-            StateHasChanged();
-        }
-
-        public void Close()
-        {
-            ModalDisplay = "none";
-            ModalClass = "";
-            ShowBackdrop = false;
-            StateHasChanged();
-        }
-
     }
 }
