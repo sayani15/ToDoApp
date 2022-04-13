@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
+using System;
 using System.Collections.Generic;
 using ToDoApp.Data;
 
@@ -39,5 +41,22 @@ namespace ToDoApp.Pages
         public string ModalDisplay = "none;";
         public string ModalClass = "";
         public bool ShowBackdrop = false;
+
+        int Id = 0;
+
+        private void OpenModal(int id)
+        {
+            this.Id = id;
+            var parameters = new ModalParameters();
+            parameters.Add("Message", $"Hello from a modal with id {id}");
+
+            Modal.OnClose += ModalClosed;
+            Modal.Show<MyComponent>("New Modal", parameters);
+        }
+
+        private async void ModalClosed(ModalResult result)
+        {
+            Modal.OnClose -= ModalClosed;
+        }
     }
 }
