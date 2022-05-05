@@ -11,7 +11,7 @@ namespace ToDoAppTests.Pages
         public void WriteCorrectDataTest()
         {
             var dataWriter = new DataWriter();
-            dataWriter.AddToAllItems2();
+            dataWriter.AddToAllItems();
         }
               
     }

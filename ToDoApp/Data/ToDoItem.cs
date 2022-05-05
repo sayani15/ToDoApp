@@ -1,23 +1,22 @@
-﻿using System;
+﻿ using System;
 
 namespace ToDoApp.Data
 {
-
     public class ToDoItem
     {
-        public string Name = "";
+        public string Name { get; set; } = "";
 
-        public DateTime DueDate = new DateTime();
+        public DateTime DueDate { get; set; } = new DateTime();
 
-        public string WhoseResponsibility = "";
+        public string WhoseResponsibility { get; set; } = "";
 
-        public string Description = "";
+        public string Description { get; set; } = "";
 
-        public DateTime WhenItWasAdded = new DateTime();
+        public DateTime WhenItWasAdded { get; set; } = new DateTime();
 
-        public Guid Id = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
 
-        public bool IsCompleted = false;
+        public bool IsCompleted { get; set; } = false;
 
         /// <summary>
         /// Clones this instance.

@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,47 +15,25 @@ namespace ToDoApp.Pages
     {
         public void AddToAllItems()
         {
-            //var data = new[]
-            //{
-            //    new Project { CustomerName = "Olivia", Title = "Mother"},
-            //    new Project { CustomerName = "Lili", Title = "Elder Sister"}
-            //};
-
-            var records = new List<ToDoItem>
+            var record = new List<ToDoItem>
             {
-                new ToDoItem { Name = "Andy's Task", 
-                    //Description = "Teach to code", IsCompleted = true, Id = new Guid(),
-                    //DueDate = new DateTime(), WhenItWasAdded = DateTime.Now, WhoseResponsibility = "rtyuio"
-                    }
+                new ToDoItem { Name = "one", Description = "whghebg",
+                    DueDate = DateTime.Now, Id = Guid.NewGuid(), IsCompleted = false,
+                    WhenItWasAdded = DateTime.Now.AddDays(-10), WhoseResponsibility = "wuakejnrg" },
             };
 
-            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            // Append to the file.
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                csv.WriteRecords(records);
-            }
-        }
-
-        public void AddToAllItems2()
-        {
-            var records = new List<ToDoItem>
-            {
-                new ToDoItem { Id = new Guid(), Name = "one" },
+                // Don't write the header again.
+                HasHeaderRecord = false,
             };
-            
-            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            using (var stream = File.Open(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv", FileMode.Append))
+            using (var writer = new StreamWriter(stream))
+            using (var csv = new CsvWriter(writer, config))
             {
-                csv.WriteRecords(records);
+                csv.WriteRecords(record);
             }
-
-
-        }
-
-        public class Foo
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
         }
     }
 }
