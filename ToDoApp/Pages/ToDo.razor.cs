@@ -16,8 +16,8 @@ namespace ToDoApp.Pages
 
         public ToDo()
         {
-            var reader = new DataReader();
-            var CSVRecords = reader.ReadResults;
+            var reader = new DataAccess();
+            var CSVRecords = reader.ReadFromCSV();
             ToDoItems.AddRange(CSVRecords);
         }
 
