@@ -49,7 +49,7 @@
             @foreach (var ToDoItem in ToDoItems)
             {
                 <tr>
-                    <th @onclick="@(() => OpenModal(123))">@ToDoItem.Name</th>
+                    <th @onclick="@(() => OpenModal(ToDoItem.Id, ToDoItem.Name, ToDoItem.Description, ToDoItem.DueDate.ToString()))">@ToDoItem.Name</th>
                     <td>@ToDoItem.Description</td>
                     <td>@ToDoItem.DueDate</td>
                     <td>@ToDoItem.WhoseResponsibility</td>

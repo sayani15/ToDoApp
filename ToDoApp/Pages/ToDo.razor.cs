@@ -41,17 +41,18 @@ namespace ToDoApp.Pages
         public string ModalDisplay = "none;";
         public string ModalClass = "";
         public bool ShowBackdrop = false;
+        
 
-        int Id = 0;
-
-        private void OpenModal(int id)
+        private void OpenModal(Guid id, string name, string description, string dueDate)
         {
-            this.Id = id;
             var parameters = new ModalParameters();
-            parameters.Add("Message", $"Hello from a modal with id {id}");
+            parameters.Add("Id", $"{id}");
+            parameters.Add("Name", $"{name}");
+            parameters.Add("Description", $"{description}");
+            parameters.Add("DueDate", $"{dueDate}");
 
             Modal.OnClose += ModalClosed;
-            Modal.Show<MyComponent>("New Modal", parameters);
+            Modal.Show<EditItemModal>("Edit", parameters);
         }
 
         private async void ModalClosed(ModalResult result)
