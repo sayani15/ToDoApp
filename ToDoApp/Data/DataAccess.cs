@@ -4,15 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using ToDoApp.Data.Interfaces;
 using ToDoApp.Data.Models;
 
 namespace ToDoApp.Data
 {
-    public class DataAccess
+    public class DataAccess : IDataAccess
     {
-        /// <summary>
-        /// Reads all data from CSV.
-        /// </summary>
+        ///<inheritdoc/>
         public List<ToDoItem> ReadFromCSV()
         {
             var readResults = new List<ToDoItem>();
@@ -55,9 +54,7 @@ namespace ToDoApp.Data
 
         }
 
-        /// <summary>
-        /// Adds a <see cref="ToDoItem"/> to the CSV.
-        /// </summary>
+       ///<inheritdoc/>
         public void AddToDoItem()
         {
             var record = new List<ToDoItem>
