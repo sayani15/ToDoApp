@@ -3,6 +3,7 @@ using Blazored.Modal.Services;
 using System;
 using System.Collections.Generic;
 using ToDoApp.Data;
+using ToDoApp.Data.Models;
 
 namespace ToDoApp.Pages
 {

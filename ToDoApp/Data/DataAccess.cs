@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using ToDoApp.Data.Models;
 
 namespace ToDoApp.Data
 {
@@ -35,36 +34,23 @@ namespace ToDoApp.Data
 
                     if (counter >= 1)
                     {
-                        var item = new ToDoItem(); //Add an Enum not magic numbers.
+                        var item = new ToDoItem();
 
-                        item.Name = values[0];
-                        item.DueDate = DateTime.Parse(values[1]);
-                        item.WhoseResponsibility = values[2];
-                        item.Description = values[3];
-                        item.WhenItWasAdded = DateTime.ParseExact(values[4], "dd/MM/yyyy HH:mm:ss", null);
+                        item.Name = values[(int)Enums.Enums.ToDoItemProperties.Name];
+                        item.DueDate = DateTime.Parse(values[(int)Enums.Enums.ToDoItemProperties.DueDate]);
+                        item.WhoseResponsibility = values[(int)Enums.Enums.ToDoItemProperties.WhoseResponsibility];
+                        item.Description = values[(int)Enums.Enums.ToDoItemProperties.Description];
+                        item.WhenItWasAdded = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded], "dd/MM/yyyy HH:mm:ss", null);
                         
-                        item.Id = Guid.Parse(values[5]);
-                        item.IsCompleted = values[6].ToLower() == "yes" ? true : false;
+                        item.Id = Guid.Parse(values[(int)Enums.Enums.ToDoItemProperties.Id]);
+                        item.IsCompleted = values[(int)Enums.Enums.ToDoItemProperties.IsCompleted].ToLower() == "yes" ? true : false;
 
 
                         readResults.Add(item);
                     }
-
                     counter += 1;
-
-                    //names.Add(values[0]);
-                    //dueDates.Add(values[1]);
-                    //whoseResponsibilities.Add(values[2]);
-                    //descriptions.Add(values[3]);
-                    //whenItWasAddedList.Add(values[4]);
-                    //ids.Add(values[5]);
-                    //isCompletedList.Add(values[6]);
-
                 }
             }
-
-            //ReadResults = readResults;
-
             return readResults;
 
         }

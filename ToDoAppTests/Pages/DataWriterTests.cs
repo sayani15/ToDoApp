@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using ToDoApp.Data;
 using ToDoApp.Pages;
 
 namespace ToDoAppTests.Pages
@@ -10,8 +11,8 @@ namespace ToDoAppTests.Pages
         [TestMethod()]
         public void WriteCorrectDataTest()
         {
-            var dataWriter = new DataWriter();
-            dataWriter.AddToAllItems();
+            var dataWriter = new DataAccess();
+            dataWriter.AddToDoItem();
         }
               
     }
