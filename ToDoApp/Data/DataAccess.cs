@@ -41,10 +41,11 @@ namespace ToDoApp.Data
                         item.DueDate = DateTime.Parse(values[1]);
                         item.WhoseResponsibility = values[2];
                         item.Description = values[3];
-                        item.WhenItWasAdded = DateTime.Parse(values[4]);
+                        item.WhenItWasAdded = DateTime.ParseExact(values[4], "dd/MM/yyyy HH:mm:ss", null);
+                        
                         item.Id = Guid.Parse(values[5]);
                         item.IsCompleted = values[6].ToLower() == "yes" ? true : false;
-                        
+
 
                         readResults.Add(item);
                     }
