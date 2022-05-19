@@ -4,17 +4,22 @@
 <form>
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control"  @bind="@Name">
+        <input type="text" class="form-control" @bind="@Name">
     </div>
     <div class="form-group">
         <label>Task description details</label>
-        <input type="text" class="form-control"  @bind="@Description">
+        <input type="text" class="form-control" @bind="@Description">
     </div>
     <div class="form-group">
         <label>Due Date</label>
-        <input type="text" class="form-control" @bind="@DueDate"> 
+        <input type="text" class="form-control" @bind="@DueDate">
     </div>
+
 </form>
+
+<button type="button" class="btn btn-primary">Save changes</button>
+<button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+
 
 @code {
     [CascadingParameter] ModalParameters parameters { get; set; }
@@ -42,6 +47,11 @@
     void Cancel()
     {
         Modal.Cancel();
+    }
+
+    void Save()
+    {
+
     }
 
 }
