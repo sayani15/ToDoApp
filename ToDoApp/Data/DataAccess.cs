@@ -40,7 +40,7 @@ namespace ToDoApp.Data
                         item.WhoseResponsibility = values[(int)Enums.Enums.ToDoItemProperties.WhoseResponsibility];
                         item.Description = values[(int)Enums.Enums.ToDoItemProperties.Description];
                         item.WhenItWasAdded = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded], "dd/MM/yyyy HH:mm:ss", null);
-                        
+
                         item.Id = Guid.Parse(values[(int)Enums.Enums.ToDoItemProperties.Id]);
                         item.IsCompleted = values[(int)Enums.Enums.ToDoItemProperties.IsCompleted].ToLower() == "yes" ? true : false;
 
@@ -54,14 +54,17 @@ namespace ToDoApp.Data
 
         }
 
-       ///<inheritdoc/>
-        public void AddToDoItem()
+        public void UpdateToDoItem(ToDoItem toDoItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        ///<inheritdoc/>
+        public void AddToDoItem(ToDoItem toDoItem)
         {
             var record = new List<ToDoItem>
             {
-                new ToDoItem { Name = "one", Description = "whghebg",
-                    DueDate = DateTime.Now, Id = Guid.NewGuid(), IsCompleted = false,
-                    WhenItWasAdded = DateTime.Now.AddDays(-10), WhoseResponsibility = "wuakejnrg" },
+                toDoItem
             };
 
             // Append to the file.
@@ -76,6 +79,11 @@ namespace ToDoApp.Data
             {
                 csv.WriteRecords(record);
             }
+        }
+
+        public void DeleteToDoItem(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
