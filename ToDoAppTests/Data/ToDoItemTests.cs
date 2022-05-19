@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ToDoApp.Data;
+using ToDoApp.Data.Models;
 
 namespace ToDoAppTests.Data
 {
@@ -28,6 +29,5 @@ namespace ToDoAppTests.Data
             Assert.AreEqual(new DateTime(2022, 2, 10, 18, 50, 0), clone.WhenItWasAdded);
 
         }
-              
     }
 }

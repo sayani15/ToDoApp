@@ -17,7 +17,7 @@
 
 </form>
 
-<button type="button" class="btn btn-primary">Save changes</button>
+<button type="button" class="btn btn-primary" @onclick="Save">Save changes</button>
 <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
 
 
@@ -51,6 +51,15 @@
 
     void Save()
     {
+        var itemToSave = new ToDoApp.Data.Models.ToDoItem();
+        itemToSave.Name = Name;
+        itemToSave.Description = Description;
+        itemToSave.DueDate = DateTime.Parse(DueDate);
+
+        //DataAccess
+
+        //save chanes
+        //close modal
 
     }
 
