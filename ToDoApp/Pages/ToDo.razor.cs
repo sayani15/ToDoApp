@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
+using System;
 using System.Collections.Generic;
 using ToDoApp.Data;
+using ToDoApp.Data.Models;
 
 namespace ToDoApp.Pages
 {
@@ -14,8 +17,8 @@ namespace ToDoApp.Pages
 
         public ToDo()
         {
-            var reader = new DataReader();
-            var CSVRecords = reader.ReadResults;
+            var reader = new DataAccess();
+            var CSVRecords = reader.ReadFromCSV();
             ToDoItems.AddRange(CSVRecords);
         }
 
@@ -33,6 +36,29 @@ namespace ToDoApp.Pages
                 toDoItem.WhenItWasAdded = System.DateTime.Now;
                 ToDoItems.Add(toDoItem);
             }
+        }
+
+        public Guid Guid = Guid.NewGuid();
+        public string ModalDisplay = "none;";
+        public string ModalClass = "";
+        public bool ShowBackdrop = false;
+        
+
+        private void OpenModal(Guid id, string name, string description, string dueDate)
+        {
+            var parameters = new ModalParameters();
+            parameters.Add("Id", $"{id}");
+            parameters.Add("Name", $"{name}");
+            parameters.Add("Description", $"{description}");
+            parameters.Add("DueDate", $"{dueDate}");
+
+            Modal.OnClose += ModalClosed;
+            Modal.Show<EditItemModal>("Edit", parameters);
+        }
+
+        private async void ModalClosed(ModalResult result)
+        {
+            Modal.OnClose -= ModalClosed;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@page "/ToDo"
+@inject IModalService Modal
 
 <h3>ToDo</h3>
 
@@ -26,7 +27,6 @@
 
 <br />
 
-<h1>Andy's change</h1>
 
 <button type="button" class="btn btn-outline-primary" @onclick="() => IsListVisible = !IsListVisible"> Toggle List </button>
 
@@ -49,12 +49,12 @@
             @foreach (var ToDoItem in ToDoItems)
             {
                 <tr>
-                    <th scope="row">@ToDoItem.Name</th>
+                    <th @onclick="@(() => OpenModal(ToDoItem.Id, ToDoItem.Name, ToDoItem.Description, ToDoItem.DueDate.ToString()))">@ToDoItem.Name</th>
                     <td>@ToDoItem.Description</td>
                     <td>@ToDoItem.DueDate</td>
                     <td>@ToDoItem.WhoseResponsibility</td>
                     <td>@ToDoItem.WhenItWasAdded</td>
-                    <td><input type="checkbox" value="@ToDoItem.IsCompleted" @bind="ToDoItem.IsCompleted"/></td>
+                    <td><input type="checkbox" value="@ToDoItem.IsCompleted" @bind="ToDoItem.IsCompleted" /></td>
                 </tr>
             }
         </tbody>
