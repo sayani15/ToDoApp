@@ -58,18 +58,9 @@ namespace ToDoApp.Data
         {
             var allDataItems = ReadFromCSV();
 
-            int index = -1;
+            var index = allDataItems.Where(i => i.Id == id).ToList().First();
 
-            foreach (var item in allDataItems)
-            {
-                if (id == item.Id)
-                {
-                    index = allDataItems.IndexOf(item);
-                    break;
-                }
-            }
-
-            allDataItems.RemoveAt(index);
+            allDataItems.Remove(index);
 
             using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
