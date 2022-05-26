@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using ToDoApp.Data.Interfaces;
 using ToDoApp.Data.Models;
 
@@ -51,10 +52,33 @@ namespace ToDoApp.Data
                 }
             }
             return readResults;
-
         }
 
-       ///<inheritdoc/>
+        public void DeleteToDoItem(Guid id)
+        {
+            var allDataItems = ReadFromCSV();
+
+            int index = -1;
+
+            foreach (var item in allDataItems)
+            {
+                if (id == item.Id)
+                {
+                    index = allDataItems.IndexOf(item);
+                    break;
+                }
+            }
+
+            allDataItems.RemoveAt(index);
+
+            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(allDataItems);
+            }
+        }
+
+        ///<inheritdoc/>
         public void AddToDoItem()
         {
             var record = new List<ToDoItem>
