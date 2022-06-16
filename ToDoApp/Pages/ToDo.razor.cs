@@ -9,16 +9,17 @@ namespace ToDoApp.Pages
 {
     public partial class ToDo
     {
-
         private List<ToDoItem> ToDoItems = new List<ToDoItem>() {
             new ToDoItem() { Name = "Sayani's Task", Description ="Learn to code"},
             new ToDoItem() {Name = "Andy's Task", Description = "Teach to code", IsCompleted = true}
         };
 
+        public DataAccess DataAccess;
+
         public ToDo()
         {
-            var reader = new DataAccess();
-            var CSVRecords = reader.ReadFromCSV();
+            DataAccess = new DataAccess();
+            var CSVRecords = DataAccess.ReadFromCSV();
             ToDoItems.AddRange(CSVRecords);
         }
 

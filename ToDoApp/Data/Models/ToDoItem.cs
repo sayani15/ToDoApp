@@ -18,6 +18,20 @@ namespace ToDoApp.Data.Models
 
         public bool IsCompleted { get; set; } = false;
 
+        public ToDoItem()
+        {}
+
+        public ToDoItem(string name, string description) //, Guid id, bool isCompleted)DateTime dueDate, , DateTime whenItWasAdded
+        {
+            Name = name;
+            //dueDate = DueDate;
+            //whoseResponsibility = WhoseResponsibility;
+            Description = description;
+            //whenItWasAdded = WhenItWasAdded;
+            //id = Id;
+         //   isCompleted = IsCompleted;
+        }
+
         /// <summary>
         /// Clones this instance.
         /// </summary>

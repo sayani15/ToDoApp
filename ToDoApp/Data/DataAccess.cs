@@ -41,7 +41,7 @@ namespace ToDoApp.Data
                         item.WhoseResponsibility = values[(int)Enums.Enums.ToDoItemProperties.WhoseResponsibility];
                         item.Description = values[(int)Enums.Enums.ToDoItemProperties.Description];
                         item.WhenItWasAdded = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded], "dd/MM/yyyy HH:mm:ss", null);
-                        
+
                         item.Id = Guid.Parse(values[(int)Enums.Enums.ToDoItemProperties.Id]);
                         item.IsCompleted = values[(int)Enums.Enums.ToDoItemProperties.IsCompleted].ToLower() == "yes" ? true : false;
 
@@ -69,15 +69,21 @@ namespace ToDoApp.Data
             }
         }
 
-        ///<inheritdoc/>
-        public void AddToDoItem()
+        public void DeleteAllItems()
         {
-            var record = new List<ToDoItem>
+            var allDataItems = new List<ToDoItem>();
+            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                new ToDoItem { Name = "one", Description = "whghebg",
-                    DueDate = DateTime.Now, Id = Guid.NewGuid(), IsCompleted = false,
-                    WhenItWasAdded = DateTime.Now.AddDays(-10), WhoseResponsibility = "wuakejnrg" },
-            };
+                csv.WriteRecords(allDataItems);
+            }
+        }
+
+        ///<inheritdoc/>
+        public void AddToDoItem(List<ToDoItem> items)
+        {
+            var record = new List<ToDoItem>();
+            record.AddRange(items);
 
             // Append to the file.
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -91,6 +97,26 @@ namespace ToDoApp.Data
             {
                 csv.WriteRecords(record);
             }
+        }
+
+        public void Update(ToDoItem toDoItem)
+        {
+            var allDBRecords = ReadFromCSV();
+            var updatingIndex = -1;
+
+            for (int i = 0; i < allDBRecords.Count; i++)
+            {
+                if (allDBRecords[i].Id == toDoItem.Id)
+                {
+                    updatingIndex = i;
+                }
+            }
+
+            allDBRecords.RemoveAt(updatingIndex);
+            allDBRecords.Add(toDoItem);
+
+            DeleteAllItems();
+            AddToDoItem(allDBRecords);
         }
     }
 }

@@ -13,6 +13,6 @@ namespace ToDoApp.Data.Interfaces
         /// <summary>
         /// Adds a <see cref="ToDoItem"/> to the CSV.
         /// </summary>
-        void AddToDoItem();
+        void AddToDoItem(ToDoItem item);
     }
 }

@@ -1,6 +1,7 @@
 ﻿@page "/ToDo"
 @inject IModalService Modal
 
+
 <h3>ToDo</h3>
 
 <form>
@@ -27,6 +28,7 @@
 
 <br />
 
+<button type="button" class="btn btn-outline-primary" @onclick=@(() => DataAccess.AddToDoItem(new Data.Models.ToDoItem("ANAME", "ADESCRIPTION")))> Add new Item </button>
 
 <button type="button" class="btn btn-outline-primary" @onclick="() => IsListVisible = !IsListVisible"> Toggle List </button>
 
@@ -60,3 +62,10 @@
         </tbody>
     </table>
 }
+
+
+
+@*@code {
+    string Name { get; set; } = "ATestName";
+    string Description { get; set; } = "ATestDescription";
+}*@

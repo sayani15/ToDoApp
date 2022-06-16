@@ -12,7 +12,7 @@ namespace ToDoAppTests.Pages
         public void WriteCorrectDataTest()
         {
             var dataWriter = new DataAccess();
-            dataWriter.AddToDoItem();
+            dataWriter.AddToDoItem(new ToDoApp.Data.Models.ToDoItem());
         }
               
     }
