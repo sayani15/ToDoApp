@@ -21,15 +21,15 @@ namespace ToDoApp.Data.Models
         public ToDoItem()
         {}
 
-        public ToDoItem(string name, string description) //, Guid id, bool isCompleted)DateTime dueDate, , DateTime whenItWasAdded
+        public ToDoItem(string name, DateTime dueDate, string whoseResponsibility, string description, DateTime whenItWasAdded, Guid id, bool isCompleted) 
         {
             Name = name;
-            //dueDate = DueDate;
-            //whoseResponsibility = WhoseResponsibility;
+            DueDate = dueDate;
+            WhoseResponsibility = whoseResponsibility;
             Description = description;
-            //whenItWasAdded = WhenItWasAdded;
-            //id = Id;
-         //   isCompleted = IsCompleted;
+            WhenItWasAdded = whenItWasAdded;
+            Id = id;
+            IsCompleted = isCompleted;
         }
 
         /// <summary>

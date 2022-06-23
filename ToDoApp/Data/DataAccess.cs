@@ -13,11 +13,13 @@ namespace ToDoApp.Data
     public class DataAccess : IDataAccess
     {
         ///<inheritdoc/>
-        public List<ToDoItem> ReadFromCSV()
+        public List<ToDoItem> ReadFromCSV(string filePath, string fileName)
         {
             var readResults = new List<ToDoItem>();
 
-            using (var reader = new StreamReader(@"Data/AllItems.csv"))
+            var t = filePath + fileName;
+
+            using (var reader = new StreamReader(filePath + fileName))
             {
                 List<string> names = new();
                 List<string> dueDates = new();
@@ -56,7 +58,7 @@ namespace ToDoApp.Data
 
         public void DeleteToDoItem(Guid id)
         {
-            var allDataItems = ReadFromCSV();
+            var allDataItems = ReadFromCSV("Data", "AllItems.csv");
 
             var index = allDataItems.Where(i => i.Id == id).ToList().First();
 
@@ -101,7 +103,7 @@ namespace ToDoApp.Data
 
         public void Update(ToDoItem toDoItem)
         {
-            var allDBRecords = ReadFromCSV();
+            var allDBRecords = ReadFromCSV("Data", "AllITems.csv");
             var updatingIndex = -1;
 
             for (int i = 0; i < allDBRecords.Count; i++)

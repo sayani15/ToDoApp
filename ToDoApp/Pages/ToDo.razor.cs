@@ -19,7 +19,7 @@ namespace ToDoApp.Pages
         public ToDo()
         {
             DataAccess = new DataAccess();
-            var CSVRecords = DataAccess.ReadFromCSV();
+            var CSVRecords = DataAccess.ReadFromCSV("Data", "AllItems.csv");
             ToDoItems.AddRange(CSVRecords);
         }
 

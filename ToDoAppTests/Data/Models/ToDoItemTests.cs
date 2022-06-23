@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ToDoApp.Data;
+using ToDoApp.Data.Models;
 
-namespace ToDoAppTests.Data
+namespace ToDoAppTests.Data.Models
 {
     [TestClass()]
     public class ToDoItemTests
