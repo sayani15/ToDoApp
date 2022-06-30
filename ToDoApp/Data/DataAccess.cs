@@ -17,8 +17,6 @@ namespace ToDoApp.Data
         {
             var readResults = new List<ToDoItem>();
 
-            var t = filePath + fileName;
-
             using (var reader = new StreamReader(filePath + fileName))
             {
                 List<string> names = new();
@@ -39,11 +37,10 @@ namespace ToDoApp.Data
                         var item = new ToDoItem();
 
                         item.Name = values[(int)Enums.Enums.ToDoItemProperties.Name];
-                        item.DueDate = DateTime.Parse(values[(int)Enums.Enums.ToDoItemProperties.DueDate]);
+                        item.DueDate = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.DueDate], "dd/MM/yyyy HH:mm:ss", null);
                         item.WhoseResponsibility = values[(int)Enums.Enums.ToDoItemProperties.WhoseResponsibility];
                         item.Description = values[(int)Enums.Enums.ToDoItemProperties.Description];
                         item.WhenItWasAdded = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded], "dd/MM/yyyy HH:mm:ss", null);
-
                         item.Id = Guid.Parse(values[(int)Enums.Enums.ToDoItemProperties.Id]);
                         item.IsCompleted = values[(int)Enums.Enums.ToDoItemProperties.IsCompleted].ToLower() == "yes" ? true : false;
 
@@ -56,7 +53,8 @@ namespace ToDoApp.Data
             return readResults;
         }
 
-        public void DeleteToDoItem(Guid id)
+        ///<inheritdoc/>
+        public void DeleteToDoItem(Guid id, string filePath, string fileName)
         {
             var allDataItems = ReadFromCSV("Data", "AllItems.csv");
 
@@ -64,25 +62,25 @@ namespace ToDoApp.Data
 
             allDataItems.Remove(index);
 
-            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
+            using (var writer = new StreamWriter(filePath + fileName))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(allDataItems);
             }
         }
-
-        public void DeleteAllItems()
+        
+        ///<inheritdoc/>
+        public void DeleteAllItems(string filePath, string fileName)
         {
-            var allDataItems = new List<ToDoItem>();
-            using (var writer = new StreamWriter(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv"))
+            using (var writer = new StreamWriter(filePath + fileName))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                csv.WriteRecords(allDataItems);
+                csv.WriteRecords(new List<ToDoItem>());
             }
         }
 
         ///<inheritdoc/>
-        public void AddToDoItem(List<ToDoItem> items)
+        public void AddToDoItem(List<ToDoItem> items, string filePath, string fileName)
         {
             var record = new List<ToDoItem>();
             record.AddRange(items);
@@ -93,15 +91,16 @@ namespace ToDoApp.Data
                 // Don't write the header again.
                 HasHeaderRecord = false,
             };
-            using (var stream = File.Open(@"C:/Users/Sayani Pathak/source/repos/ToDoApp/ToDoApp/Data/AllItems - Copy.csv", FileMode.Append))
+            using (var stream = File.Open(filePath + fileName, FileMode.Append))
             using (var writer = new StreamWriter(stream))
             using (var csv = new CsvWriter(writer, config))
             {
-                csv.WriteRecords(record);
+                csv.WriteRecords( record);
             }
         }
 
-        public void Update(ToDoItem toDoItem)
+        ///<inheritdoc/>
+        public void Update(ToDoItem toDoItem, string filePath, string fileName)
         {
             var allDBRecords = ReadFromCSV("Data", "AllITems.csv");
             var updatingIndex = -1;
@@ -117,8 +116,8 @@ namespace ToDoApp.Data
             allDBRecords.RemoveAt(updatingIndex);
             allDBRecords.Add(toDoItem);
 
-            DeleteAllItems();
-            AddToDoItem(allDBRecords);
+            DeleteAllItems(filePath, fileName);
+            AddToDoItem(allDBRecords, filePath, fileName);
         }
     }
 }

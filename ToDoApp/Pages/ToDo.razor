@@ -28,7 +28,7 @@
 
 <br />
 
-<button type="button" class="btn btn-outline-primary" @onclick=@(() => DataAccess.AddToDoItem(new List<Data.Models.ToDoItem>() { new Data.Models.ToDoItem("ANAME", DateTime.Now, "APERSON", "ADESCRIPTION", DateTime.Now, Guid, false) }))> Add new Item </button>
+@*<button type="button" class="btn btn-outline-primary" @onclick=@(() => DataAccess.AddToDoItem(new List<Data.Models.ToDoItem>() { new Data.Models.ToDoItem("ANAME", DateTime.Now, "APERSON", "ADESCRIPTION", DateTime.Now, Guid, false) }))> Add new Item </button>*@
 
 <button type="button" class="btn btn-outline-primary" @onclick="() => IsListVisible = !IsListVisible"> Toggle List </button>
 
