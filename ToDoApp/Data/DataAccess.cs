@@ -37,10 +37,10 @@ namespace ToDoApp.Data
                         var item = new ToDoItem();
 
                         item.Name = values[(int)Enums.Enums.ToDoItemProperties.Name];
-                        item.DueDate = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.DueDate], "dd/MM/yyyy HH:mm:ss", null);
+                        item.DueDate = DateTime.Parse(values[(int)Enums.Enums.ToDoItemProperties.DueDate]);//, "dd/MM/yyyy HH:mm:ss", null);
                         item.WhoseResponsibility = values[(int)Enums.Enums.ToDoItemProperties.WhoseResponsibility];
                         item.Description = values[(int)Enums.Enums.ToDoItemProperties.Description];
-                        item.WhenItWasAdded = DateTime.ParseExact(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded], "dd/MM/yyyy HH:mm:ss", null);
+                        item.WhenItWasAdded = DateTime.Parse(values[(int)Enums.Enums.ToDoItemProperties.WhenItWasAdded]);//, "dd/MM/yyyy HH:mm:ss", null);
                         item.Id = Guid.Parse(values[(int)Enums.Enums.ToDoItemProperties.Id]);
                         item.IsCompleted = values[(int)Enums.Enums.ToDoItemProperties.IsCompleted].ToLower() == "yes" ? true : false;
 
@@ -56,7 +56,7 @@ namespace ToDoApp.Data
         ///<inheritdoc/>
         public void DeleteToDoItem(Guid id, string filePath, string fileName)
         {
-            var allDataItems = ReadFromCSV("Data", "AllItems.csv");
+            var allDataItems = ReadFromCSV(filePath, fileName);
 
             var index = allDataItems.Where(i => i.Id == id).ToList().First();
 
@@ -65,6 +65,7 @@ namespace ToDoApp.Data
             using (var writer = new StreamWriter(filePath + fileName))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                csv.Context.TypeConverterOptionsCache.GetOptions<DateTime>().Formats = new[] { "dd/MM/yyyy" };
                 csv.WriteRecords(allDataItems);
             }
         }
@@ -75,6 +76,7 @@ namespace ToDoApp.Data
             using (var writer = new StreamWriter(filePath + fileName))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                csv.Context.TypeConverterOptionsCache.GetOptions<DateTime>().Formats = new[] { "dd/MM/yyyy" };
                 csv.WriteRecords(new List<ToDoItem>());
             }
         }
@@ -84,7 +86,7 @@ namespace ToDoApp.Data
         {
             var record = new List<ToDoItem>();
             record.AddRange(items);
-
+            
             // Append to the file.
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -95,6 +97,7 @@ namespace ToDoApp.Data
             using (var writer = new StreamWriter(stream))
             using (var csv = new CsvWriter(writer, config))
             {
+                csv.Context.TypeConverterOptionsCache.GetOptions<DateTime>().Formats = new[] { "dd/MM/yyyy" };
                 csv.WriteRecords( record);
             }
         }

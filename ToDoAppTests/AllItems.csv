@@ -1,8 +1,4 @@
-Name,DueDate,WhosResponsibility,Description,WhenItWasAdded,ID,IsCompleted
-sdfgh,25/03/2022 18:45:21,sdfghj,wesdfgvh,24/03/2022 13:34:56,940c0799-82d2-4aa4-9726-5d9cba44f9d8,yes
-testName,09/05/2022 12:12:12,person,testDescription,06/29/2022 18:53:54,7d548e93-785f-4e08-a493-9734d640734f,False
-testName2,09/06/2022 12:12:12,person2,testDescription2,06/29/2022 18:53:14,be03a4b4-f231-4695-b34d-c42e65319c28,False
-testName3,01/05/2022 12:12:12,person3,testDescription3,07/29/2022 18:53:54,4042ebc7-0b80-4501-a5a4-5edfc9cc340e,True
-testName,09/05/2022 12:12:12,person,testDescription,06/29/2022 18:53:54,d4eae5df-07dd-4c88-847b-fbbc4dfd3928,False
-testName2,09/06/2022 12:12:12,person2,testDescription2,06/29/2022 18:53:14,5f51abb1-8f04-4982-9896-a2568dba4dea,False
-testName3,01/05/2022 12:12:12,person3,testDescription3,07/29/2022 18:53:54,0ca4944d-ec57-405f-8cbb-4265cb2dc26a,True
+Name,DueDate,WhoseResponsibility,Description,WhenItWasAdded,Id,IsCompleted
+testName,05/09/2022,person,testDescription,29/06/2022,59ee27d9-976f-498b-971c-ebe54ea7885a,False
+testName2,06/09/2022,person2,testDescription2,29/06/2022,84b83965-daf5-4283-ab69-5b0226ac0ca2,False
+testName3,05/01/2022,person3,testDescription3,29/07/2022,efc20cc9-1607-43b7-899b-76520fef43e7,False
